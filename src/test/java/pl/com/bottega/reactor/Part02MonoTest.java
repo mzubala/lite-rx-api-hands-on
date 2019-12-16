@@ -56,4 +56,10 @@ public class Part02MonoTest {
 				.verifyError(IllegalStateException.class);
 	}
 
+	@Test
+	public  void subscribesToMono() {
+		var mono = workshop.fooMono();
+		mono.subscribe(System.out::println);
+	}
+
 }

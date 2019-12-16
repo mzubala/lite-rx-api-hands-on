@@ -2,6 +2,7 @@ package pl.com.bottega.reactor;
 
 import org.junit.Test;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Schedulers;
 import reactor.test.StepVerifier;
 
 /**
@@ -61,6 +62,13 @@ public class Part01FluxTest {
 		StepVerifier.create(flux)
 				.expectNext(0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L)
 				.verifyComplete();
+	}
+
+	@Test
+	public void subscribesToFlux() {
+		var flux = workshop.fooBarFluxFromList();
+
+		flux.subscribe((string) -> System.out.println(string));
 	}
 
 }
